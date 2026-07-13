@@ -1,0 +1,242 @@
+/* Reset dasar & Font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Base Body (Layouting & Background) */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('https://unsplash.com/photos/lzzbtZwGg68/download?force=true&w=1920');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 16px;
+}
+
+/* Layar Loading */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #66b3ff, #1a75ff, #0052cc);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.loading-screen.selesai {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Karakter Awan Lucu */
+.awan-lucu {
+    position: relative;
+    width: 150px;
+    height: 80px;
+    background: #ffffff;
+    border-radius: 100px;
+    margin-bottom: 40px;
+    animation: melompat 1s infinite ease-in-out;
+}
+
+.awan-lucu::before, .awan-lucu::after {
+    content: '';
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.awan-lucu::before {
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    left: 20px;
+}
+
+.awan-lucu::after {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    right: 20px;
+}
+
+/* Wajah & Efek Kedip Mata */
+.mata-kiri, .mata-kanan {
+    position: absolute;
+    width: 15px;
+    height: 20px;
+    background: #222;
+    border-radius: 50%;
+    top: 25px;
+    transition: height 0.1s ease, transform 0.1s ease;
+    transform-origin: center;
+}
+
+.mata-kiri { left: 40px; }
+.mata-kanan { right: 40px; }
+
+/* Kelas saat mata menutup */
+.mata-tutup {
+    height: 3px !important;
+    transform: translateY(8px);
+}
+
+.senyum {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    border-bottom: 4px solid #222;
+    border-radius: 0 0 40px 40px;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes melompat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.teks-loading {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.persen {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.bar-container {
+    width: 250px;
+    height: 15px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid white;
+}
+
+.bar-isi {
+    height: 100%;
+    background: linear-gradient(90deg, #ffff66, #ffcc00);
+    border-radius: 20px;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#kontenUtama {
+  display: none;
+}
+
+/* Komponen Kartu */
+.card {
+  background-color: #ffffff;
+  border: 4px solid #d1d5db;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(147, 197, 253, 0.7), 0 8px 10px -6px rgba(147, 197, 253, 0.7);
+  border-radius: 12px;
+  text-align: center;
+  width: 100%;
+  max-width: 384px; /* Setara max-w-sm */
+}
+
+/* Tipografi */
+.title {
+  font-size: 24px;
+  font-weight: 900;
+  color: #1f2937;
+  letter-spacing: 0.05em;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: #2563eb;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.message {
+  font-weight: 600;
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.625;
+}
+
+.message span {
+  color: #2563eb;
+}
+
+.sender {
+  margin-top: 16px;
+  font-weight: 500;
+  color: #2563eb;
+  font-size: 0.6rem;
+}
+
+/* Tombol / Buttons */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  color: #ffffff;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  margin-top: 24px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+}
+
+.btn-primary {
+  background-color: #2563eb;
+}
+
+.btn-primary:hover {
+  background-color: #1e40af;
+}
+
+.btn-secondary {
+  background-color: #2563eb;
+}
+
+.btn-secondary:hover {
+  background-color: #1e40af;
+}
+
+/* Breakpoint Responsif (Ukuran Layar Tablet & Desktop) */
+@media (min-width: 640px) {
+  .card {
+    padding: 32px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .subtitle {
+    font-size: 24px;
+  }
+  .message {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: 40px;
+  }
+}
