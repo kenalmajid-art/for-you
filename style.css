@@ -6,20 +6,133 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
-/* Base Body (Layouting & Background) */
+/* =======================================================
+   SISTEM TEMA WARNA (VARIABEL)
+   ======================================================= */
+:root {
+  /* Tema Semula (Light Blue & White) */
+  --bg-gradient: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
+  --card-bg: #ffffff;
+  --text-main: #1f2937;
+  --text-highlight: #2563eb;
+  --btn-bg: #2563eb;
+  --btn-hover: #1d4ed8;
+  --btn-text: #ffffff;
+  --box-shadow: #1630a8;
+  /* Glow Berputar: Gradient Biru Agak Tua */
+  --border-glow: conic-gradient(from 0deg, transparent 30%, #1e40af 70%, #1d4ed8 100%);
+}
+
+[data-theme="dark"] {
+  /* Tema Gelap (Black & Purple) */
+  --bg-gradient: linear-gradient(135deg, #000000 0%, #581c87 100%);
+  --card-bg: #1a1a1c; /* Hitam Pucat */
+  --text-main: #f3f4f6;
+  --text-highlight: #a855f7;
+  --btn-bg: #7c3aed;
+  --btn-hover: #6d28d9;
+  --btn-text: #ffffff;
+  --box-shadow:  #4c0770;
+  /* Glow Berputar: Gradient Blue & Purple Terang */
+  --border-glow: conic-gradient(from 0deg, transparent 30%, #38bdf8 60%, #c084fc 100%);
+}
+
+/* Base Body Layouting */
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url('https://unsplash.com/photos/lzzbtZwGg68/download?force=true&w=1920');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: var(--bg-gradient);
+  transition: background 0.5s ease;
   padding: 16px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Layar Loading */
+/* =======================================================
+   TOMBOL GANTI TEMA DI KANAN ATAS
+   =================================================== */
+.theme-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 0 var(--box-shadow);
+  transition: all 0.3s ease;
+  z-index: 100;
+  display: none; /* Disembunyikan saat loading */
+}
+
+.theme-btn:active {
+  box-shadow: 0 4px 0 var(--box-shadow);
+  background-color: var(--btn-hover);
+  transform: translateY(5px);
+}
+
+/* =======================================================
+   KOMPONEN CARD DENGAN ANIMASI GLOWING BORDER BERPUTAR
+   ======================================================= */
+.card-container {
+  position: relative;
+  width: 100%;
+  max-width: 384px; /* Setara max-w-sm */
+  height: auto;
+  min-height: 380px;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Efek Putaran Gradasi di Belakang Card */
+.card-container::before {
+  content: '';
+  position: absolute;
+  width: 180%;
+  height: 180%;
+  background: var(--border-glow);
+  animation: putarBorder 4s linear infinite;
+  transition: background 0.5s ease;
+}
+
+@keyframes putarBorder {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Bagian Card Utama */
+.card {
+  position: absolute;
+  inset: 4px; /* Memberikan ketebalan border glowing */
+  background-color: var(--card-bg);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  z-index: 2;
+  transition: background-color 0.5s ease;
+}
+
+.card-content {
+  width: 100%;
+  text-align: center;
+}
+
+/* =======================================================
+   ANIMASI LOADING (DIPERTAHANKAN 100% ASLI)
+   ======================================================= */
 .loading-screen {
     position: fixed;
     top: 0;
@@ -40,7 +153,6 @@ body {
     visibility: hidden;
 }
 
-/* Karakter Awan Lucu */
 .awan-lucu {
     position: relative;
     width: 150px;
@@ -72,7 +184,6 @@ body {
     right: 20px;
 }
 
-/* Wajah & Efek Kedip Mata */
 .mata-kiri, .mata-kanan {
     position: absolute;
     width: 15px;
@@ -87,7 +198,6 @@ body {
 .mata-kiri { left: 40px; }
 .mata-kanan { right: 40px; }
 
-/* Kelas saat mata menutup */
 .mata-tutup {
     height: 3px !important;
     transform: translateY(8px);
@@ -142,101 +252,86 @@ body {
 
 #kontenUtama {
   display: none;
-}
-
-/* Komponen Kartu */
-.card {
-  background-color: #ffffff;
-  border: 4px solid #d1d5db;
-  padding: 24px;
-  box-shadow: 0 20px 25px -5px rgba(147, 197, 253, 0.7), 0 8px 10px -6px rgba(147, 197, 253, 0.7);
-  border-radius: 12px;
-  text-align: center;
   width: 100%;
-  max-width: 384px; /* Setara max-w-sm */
+  max-width: 384px;
 }
 
-/* Tipografi */
+/* Typografi & Tombol Konten */
 .title {
   font-size: 24px;
   font-weight: 900;
-  color: #1f2937;
+  color: var(--text-main);
   letter-spacing: 0.05em;
+  transition: color 0.5s ease;
 }
 
 .subtitle {
   font-size: 20px;
-  color: #2563eb;
+  color: var(--text-highlight);
   font-weight: 700;
   margin-top: 8px;
+  transition: color 0.5s ease;
+}
+
+.card-content img {
+  width: 100%;
+  max-width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 0 auto 16px auto;
+  display: block;
+  border: 3px solid var(--text-highlight);
+  box-shadow: 0 8px 0 var(--box-shadow);
+  transition: border-color 0.5s ease;
 }
 
 .message {
   font-weight: 600;
   font-size: 16px;
-  color: #374151;
+  color: var(--text-main);
   line-height: 1.625;
+  transition: color 0.5s ease;
 }
 
 .message span {
-  color: #2563eb;
+  color: var(--text-highlight);
+  transition: color 0.5s ease;
 }
 
 .sender {
   margin-top: 16px;
   font-weight: 500;
-  color: #2563eb;
-  font-size: 0.6rem;
+  color: var(--text-highlight);
+  font-size: 0.75rem;
+  transition: color 0.5s ease;
 }
 
-/* Tombol / Buttons */
 .btn {
   display: block;
   width: 100%;
   padding: 12px;
-  color: #ffffff;
-  font-weight: 500;
+  color: var(--btn-text);
+  font-weight: 600;
   border: none;
   border-radius: 8px;
   margin-top: 24px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in;
+  background-color: var(--btn-bg);
+  box-shadow: 0 8px 0 var(--box-shadow);
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-.btn-primary {
-  background-color: #2563eb;
+.btn:active {
+  box-shadow: 0 5px 0 var(--box-shadow);
+  background-color: var(--btn-hover);
+  transform: translateY(5px);
 }
 
-.btn-primary:hover {
-  background-color: #1e40af;
-}
-
-.btn-secondary {
-  background-color: #2563eb;
-}
-
-.btn-secondary:hover {
-  background-color: #1e40af;
-}
-
-/* Breakpoint Responsif (Ukuran Layar Tablet & Desktop) */
+/* Responsif */
 @media (min-width: 640px) {
-  .card {
-    padding: 32px;
-  }
-  .title {
-    font-size: 30px;
-  }
-  .subtitle {
-    font-size: 24px;
-  }
-  .message {
-    font-size: 18px;
-  }
-}
-
-@media (min-width: 768px) {
-  .card {
-    padding: 40px;
-  }
+  .card { padding: 32px; }
+  .title { font-size: 28px; }
+  .subtitle { font-size: 22px; }
+  .message { font-size: 18px; }
 }
