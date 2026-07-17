@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- loading screen -->
+    <!-- loading screen (DIPERTAHANKAN UTUH) -->
     <div class="loading-screen" id="layarLoading">
          <div class="awan-lucu">
              <div class="mata-kiri" id="mataKiri"></div>
@@ -21,16 +21,26 @@
              <div class="bar-isi" id="barIsi"></div>
          </div>
      </div>
-    <!-- isi konten -->
-  <div id="kontenUtama">
-    <div class="card animate__animated animate__backInDown" id="kartu">
-      <h1 class="title">Happy Anniversary 🎉</h1>
-      <h1 class="subtitle animate__animated animate__pulse animate__infinite">My Pacar</h1>
-      <button class="btn btn-primary animate__animated animate__delay-1s animate__tada" onclick="ubahKartu()">Klik disini!</button>
+
+    <!-- tombol ganti tema di kanan atas (Hanya muncul saat konten utama aktif) -->
+    <button id="themeToggle" class="theme-btn">Amz fav color</button>
+
+    <!-- isi konten utama -->
+    <div id="kontenUtama">
+      <div class="card-container animate__animated animate__backInDown" id="kartuContainer">
+        <div class="card" id="kartu">
+          <!-- Konten Card Dinamis -->
+          <div class="card-content">
+            <h1 class="title">Happy Anniversary 🎉</h1>
+            <h1 class="subtitle animate__animated animate__pulse animate__infinite">My Pacar</h1>
+            <button class="btn btn-primary animate__animated animate__delay-1s animate__tada" onclick="ubahKartu()">Klik disini!</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
     
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
+
