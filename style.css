@@ -1,138 +1,19 @@
-/* Reset dasar & Font */
+/* --- RESET & GLOBAL STYLE --- */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', cursive, Sans-Serif;
 }
 
-/* =======================================================
-   SISTEM TEMA WARNA (VARIABEL)
-   ======================================================= */
-:root {
-  /* Tema Semula (Light Blue & White) */
-  --bg-gradient: linear-gradient(135deg, #ffffff 0%, #3b82f6 100%);
-  --card-bg: #ffffff;
-  --text-main: #1f2937;
-  --text-highlight: #2563eb;
-  --btn-bg: #2563eb;
-  --btn-hover: #1d4ed8;
-  --btn-text: #ffffff;
-  --box-shadow: #1630a8;
-  /* Glow Berputar: Gradient Biru Agak Tua */
-  --border-glow: conic-gradient(from 0deg, transparent 30%, #1e40af 70%, #1d4ed8 100%);
-}
-
-[data-theme="dark"] {
-  /* Tema Gelap (Black & Purple) */
-  --bg-gradient: linear-gradient(135deg, #000000 0%, #581c87 100%);
-  --card-bg: #1a1a1c; /* Hitam Pucat */
-  --text-main: #f3f4f6;
-  --text-highlight: #a855f7;
-  --btn-bg: #7c3aed;
-  --btn-hover: #6d28d9;
-  --btn-text: #ffffff;
-  --box-shadow:  #4c0770;
-  /* Glow Berputar: Gradient Blue & Purple Terang */
-  --border-glow: conic-gradient(from 0deg, transparent 30%, #38bdf8 60%, #c084fc 100%);
-}
-
-/* Base Body Layouting */
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: var(--bg-gradient);
-  transition: background 0.5s ease;
-  padding: 16px;
-  overflow: hidden;
-  position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #a8d8ff 0%, #e0f0ff 50%, #c4e0ff 100%);
+    overflow-x: hidden;
+    position: relative;
+    padding: 20px;
 }
 
-/* =======================================================
-   TOMBOL GANTI TEMA DI KANAN ATAS
-   =================================================== */
-.theme-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 30px;
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: 0 8px 0 var(--box-shadow);
-  transition: all 0.3s ease;
-  z-index: 100;
-  display: none; /* Disembunyikan saat loading */
-}
-
-.theme-btn:active {
-  box-shadow: 0 4px 0 var(--box-shadow);
-  background-color: var(--btn-hover);
-  transform: translateY(5px);
-}
-
-/* =======================================================
-   KOMPONEN CARD DENGAN ANIMASI GLOWING BORDER BERPUTAR
-   ======================================================= */
-.card-container {
-  position: relative;
-  width: 100%;
-  max-width: 384px; /* Setara max-w-sm */
-  height: auto;
-  min-height: 380px;
-  border-radius: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-}
-
-/* Efek Putaran Gradasi di Belakang Card */
-.card-container::before {
-  content: '';
-  position: absolute;
-  width: 180%;
-  height: 180%;
-  background: var(--border-glow);
-  animation: putarBorder 4s linear infinite;
-  transition: background 0.5s ease;
-}
-
-@keyframes putarBorder {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Bagian Card Utama */
-.card {
-  position: absolute;
-  inset: 4px; /* Memberikan ketebalan border glowing */
-  background-color: var(--card-bg);
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 24px;
-  z-index: 2;
-  transition: background-color 0.5s ease;
-}
-
-.card-content {
-  width: 100%;
-  text-align: center;
-}
-
-/* =======================================================
-   ANIMASI LOADING (DIPERTAHANKAN 100% ASLI)
-   ======================================================= */
 .loading-screen {
     position: fixed;
     top: 0;
@@ -153,6 +34,7 @@ body {
     visibility: hidden;
 }
 
+/* Karakter Awan Lucu */
 .awan-lucu {
     position: relative;
     width: 150px;
@@ -184,6 +66,7 @@ body {
     right: 20px;
 }
 
+/* Wajah & Efek Kedip Mata */
 .mata-kiri, .mata-kanan {
     position: absolute;
     width: 15px;
@@ -198,6 +81,7 @@ body {
 .mata-kiri { left: 40px; }
 .mata-kanan { right: 40px; }
 
+/* Kelas saat mata menutup */
 .mata-tutup {
     height: 3px !important;
     transform: translateY(8px);
@@ -252,86 +136,295 @@ body {
 
 #kontenUtama {
   display: none;
-  width: 100%;
-  max-width: 384px;
 }
 
-/* Typografi & Tombol Konten */
-.title {
-  font-size: 24px;
-  font-weight: 900;
-  color: var(--text-main);
-  letter-spacing: 0.05em;
-  transition: color 0.5s ease;
+/* Hati yang melayang */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
 }
 
-.subtitle {
-  font-size: 20px;
-  color: var(--text-highlight);
-  font-weight: 700;
-  margin-top: 8px;
-  transition: color 0.5s ease;
+.heart {
+    position: absolute;
+    color: #3399ff;
+    font-size: 20px;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.7;
 }
 
-.card-content img {
-  width: 100%;
-  max-width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin: 0 auto 16px auto;
-  display: block;
-  border: 3px solid var(--text-highlight);
-  box-shadow: 0 8px 0 var(--box-shadow);
-  transition: border-color 0.5s ease;
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
 }
 
-.message {
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--text-main);
-  line-height: 1.625;
-  transition: color 0.5s ease;
+/* --- CONTAINER UTAMA --- */
+.container {
+    position: relative;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 25px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40vh;
+    width: 100%;
+    max-width: 360px;
+    margin-top: 12rem;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
-.message span {
-  color: var(--text-highlight);
-  transition: color 0.5s ease;
+.container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
 }
 
-.sender {
-  margin-top: 16px;
-  font-weight: 500;
-  color: var(--text-highlight);
-  font-size: 0.75rem;
-  transition: color 0.5s ease;
+.container h1 {
+  text-align: center;
+  color: #3399ff;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
+/* --- WADAH SURAT (ENVELOPE) --- */
+.envelope {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(51, 153, 255, 0.15);
+    padding: 30px 25px;
+    margin-bottom: 25px;
+    position: absolute;
+    
+    /* Efek transisi buka tutup yang mulus */
+    display: none; /* Diatur via JS menggunakan class open */
+    max-height: 70vh;
+    overflow-y: scroll; 
+    scroll-behavior: smooth;
+    border: 3px dashed #3399ff;
+}
+
+/* Aktif saat tombol diklik */
+.envelope.open {
+    display: block;
+    animation: slideUp 0.5s ease forward;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- ISI SURAT --- */
+section.letter {
+    width: 100%;
+    text-align: center;
+}
+
+.letter h1 {
+    color: #3399ff;
+    font-size: 2rem;
+    font-family: 'Segoe UI', cursive, Sans-Serif;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.sub-title {
+    color: #666;
+    font-family: 'Segoe UI', cursive, Sans-Serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    border-bottom: 1px dashed #99ccff;
+    padding-bottom: 15px;
+}
+
+.message p {
+    color: #444;
+    font-family: 'Segoe UI', cursive, Sans-Serif;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.message p span {
+  color: #3399ff;
+}
+
+.love {
+    color: #3399ff;
+    font-weight: bold;
+    font-size: 1.35rem;
+    margin-top: 25px;
+    text-align: center !important;
+}
+
+/* --- COUNTDOWN --- */
+.countdown {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed #99ccff;
+}
+
+.countdown p {
+    color: #888;
+    font-size: 0.96rem;
+    margin-bottom: 10px;
+}
+
+.timer {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #3399ff;
+    letter-spacing: 0.5px;
+}
+
+/* --- TOMBOL TUTUP (X) --- */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 3rem;
+    color: #3399ff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #ff4757;
+}
+
+/* --- TOMBOL UTAMA --- */
 .btn {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  color: var(--btn-text);
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  margin-top: 24px;
-  cursor: pointer;
-  background-color: var(--btn-bg);
-  box-shadow: 0 8px 0 var(--box-shadow);
-  transition: background-color 0.3s, transform 0.3s;
+    width: 95%;
+    max-width: 320px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #3399ff, #66b3ff);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 6px 0 #004b98;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.btn.secondary {
+    font-size: 1.15rem;
+    background: linear-gradient(135deg, #66b3ff, #99ccff);
+    box-shadow: 0 6px 0 #004b98;
 }
 
 .btn:active {
-  box-shadow: 0 5px 0 var(--box-shadow);
-  background-color: var(--btn-hover);
-  transform: translateY(5px);
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #004b98;
 }
 
-/* Responsif */
-@media (min-width: 640px) {
-  .card { padding: 32px; }
-  .title { font-size: 28px; }
-  .subtitle { font-size: 22px; }
-  .message { font-size: 18px; }
+/* --- HALAMAN GALERI --- */
+section.galery {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #a8d8ff 0%, #e0f0ff 50%, #c4e0ff 100%);
+    z-index: 100;
+    padding: 60px 20px 40px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+section.galery.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- PERBAIKAN TOMBOL CLOSE DI GALERI --- */
+section.galery .close-btn {
+    position: fixed; /* Membuat tombol tetap di posisinya saat galeri di-scroll */
+    top: 20px;
+    right: 20px;
+    color: #3399ff;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    z-index: 110; /* Harus lebih tinggi dari z-index section.galery (100) */
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+section.galery .close-btn:hover {
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Sedikit penyesuaian padding atas galeri agar judul tidak mepet ke tombol */
+section.galery {
+    padding-top: 80px;
+}
+
+
+.galery h2 {
+    text-align: center;
+    color: #1a75ff;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.02);
+}
+
+/* Custom Scrollbar */
+.envelope::-webkit-scrollbar,
+.galery::-webkit-scrollbar {
+    width: 6px;
+}
+.envelope::-webkit-scrollbar-track,
+.galery::-webkit-scrollbar-track {
+    background: transparent;
+}
+.envelope::-webkit-scrollbar-thumb,
+.galery::-webkit-scrollbar-thumb {
+    background: #b3d9ff;
+    border-radius: 10px;
 }

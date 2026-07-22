@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For you!</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Anniversary</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   </head>
   <body>
-    <!-- loading screen (DIPERTAHANKAN UTUH) -->
+      
+      <!-- loading screen -->
     <div class="loading-screen" id="layarLoading">
          <div class="awan-lucu">
              <div class="mata-kiri" id="mataKiri"></div>
@@ -21,25 +22,67 @@
              <div class="bar-isi" id="barIsi"></div>
          </div>
      </div>
+      
+      <div id="kontenUtama">
+        <!-- Latar Belakang Hati -->
+        <div class="hearts-container" id="heartsContainer"></div>
 
-    <!-- tombol ganti tema di kanan atas (Hanya muncul saat konten utama aktif) -->
-    <button id="themeToggle" class="theme-btn">Amz fav color</button>
+        <!-- Halaman Utama -->
+        <div class="container" id="homePage">
+            <!-- Wadah Surat Modifikasi -->
+            <div class="envelope" id="envelope">
+                <button class="close-btn" id="closeLetter">×</button>
+                <section class="letter">
+                    <h1>🤍 Happy Anniversary 🤍</h1>
+                    <p class="sub-title">Untuk Anak Mg Acang Tercinta</p>
 
-    <!-- isi konten utama -->
-    <div id="kontenUtama">
-      <div class="card-container animate__animated animate__backInDown" id="kartuContainer">
-        <div class="card" id="kartu">
-          <!-- Konten Card Dinamis -->
-          <div class="card-content">
-            <h1 class="title">Happy Anniversary 🎉</h1>
-            <h1 class="subtitle animate__animated animate__pulse animate__infinite">My Pacar</h1>
-            <button class="btn btn-primary animate__animated animate__delay-1s animate__tada" onclick="ubahKartu()">Klik disini!</button>
-          </div>
+                    <div class="message">
+                        <p>Terima kasih telah hadir, melengkapi hari-hariku, dan bertahan bersamaku sejauh ini.</p>
+                        <p>Ada waktu di mana kita tak saling sapa, jalan kita berbelok ke arah yang berbeda. Namun hari ini, aku bersyukur luar biasa : meski sempat hilang kabar, pada akhirnya kita kembali menemukan rumah yg sama, yaitu di hati satu sama lain.</p>
+                        <p>Setiap detik bersamamu adalah anugerah terindah yg tuhan berikan kepadaku.</p>
+                        <p>Semoga <span>kita akan selalu saling melengkapi, menyayangi, dan menua bersama.</span></p>
+                        <p>Namun jika takdir berkata lain, apa daya aku yg hanya bisa mengikhlaskanmu.</p>
+                        <p>Raihlah <span>kebahagiaanmu</span> walaupun <span>itu</span> tidak <span>bersamaku.</span></p>
+                        <p class="love">I love you so much! 🤍</p>
+                    </div>
+
+                    <div class="countdown">
+                        <p>Kita telah bersama selama:</p>
+                        <div class="timer" id="timer">
+                            <span id="days">00</span> Hari :
+                            <span id="hours">00</span> Jam :
+                            <span id="minutes">00</span> Menit :
+                            <span id="seconds">00</span> Detik
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <h1 class="text-awal" id="textAwal">Hi, Tekan tombol di bawah ini yaa<br>👇</h1>
+            <!-- Menu Tombol -->
+            <button class="btn" id="openBtn">
+                Klik Untuk Membuka Pesan 💌
+            </button>
+            <button class="btn secondary" id="openGalleryBtn">
+                Klik Untuk Melihat Galeri 📸
+            </button>
         </div>
-      </div>
-    </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
-    <script src="script.js"></script>
+
+        <!-- Halaman Galeri -->
+        <section class="galery" id="galleryPage">
+            <button class="close-btn" id="closeGallery">×</button>
+            <h2>📸 Wiaa gallery</h2>
+            <div class="gallery-grid">
+                <img src="p1.jpg" alt="Kenangan 1" />
+                <img src="p2.jpg" alt="Kenangan 2" />
+                <img src="p3.jpg" alt="Kenangan 3" />
+                <img src="p4.jpg" alt="Kenangan 4" />
+                <img src="p5.jpg" alt="Kenangan 5" />
+                <img src="p6.jpg" alt="Kenangan 6" />
+                <img src="p7.jpg" alt="kenangan 7" />
+            </div>
+        </section>
+      </div>  
+        
+        <script src="script.js"></script>
   </body>
 </html>
