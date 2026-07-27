@@ -11,7 +11,7 @@ const playBtn = document.querySelector('.play-btn');
 const forwardBtn = document.querySelector('.forward-btn');
 const backwardBtn = document.querySelector('.backward-btn');
 
-// --- SETUP AUDIO VISUALIZER (SPECTRUM) ---
+// --- SETUP SPECTRUM VISUALIZER ---
 const canvas = document.getElementById('spectrum');
 const ctx = canvas.getContext('2d');
 
@@ -22,21 +22,23 @@ let isAudioInit = false;
 
 function initSpectrum() {
   if (isAudioInit) return;
-  
-  // Menambahkan CORS agar Web Audio API bisa membaca audio
-  music.crossOrigin = "anonymous";
 
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  analyser = audioCtx.createAnalyser();
+  try {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
 
-  source = audioCtx.createMediaElementSource(music);
-  source.connect(analyser);
-  analyser.connect(audioCtx.destination);
+    source = audioCtx.createMediaElementSource(music);
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
 
-  analyser.fftSize = 128; // Ukuran sampel frekuensi (bisa disesuaikan 64, 128, 256)
-  
-  isAudioInit = true;
-  drawSpectrum();
+    analyser.fftSize = 64; // Jumlah batang spektrum
+    isAudioInit = true;
+    
+    resizeCanvas();
+    drawSpectrum();
+  } catch (err) {
+    console.log("Spektrum gagal dimuat:", err);
+  }
 }
 
 function resizeCanvas() {
@@ -61,15 +63,14 @@ function drawSpectrum() {
   let x = 0;
 
   for (let i = 0; i < bufferLength; i++) {
-    const barHeight = (dataArray[i] / 255) * (canvas.height * 0.45);
+    const barHeight = (dataArray[i] / 255) * (canvas.height * 0.5);
 
-    // Warna gradien menyesuaikan dengan tema biru UI
     const gradient = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - barHeight);
     gradient.addColorStop(0, 'rgba(51, 153, 255, 0.2)');
     gradient.addColorStop(1, 'rgba(26, 117, 255, 0.8)');
 
     ctx.fillStyle = gradient;
-    ctx.fillRect(x, canvas.height - barHeight, barWidth - 2, barHeight);
+    ctx.fillRect(x, canvas.height - barHeight, barWidth - 3, barHeight);
 
     x += barWidth;
   }
@@ -108,9 +109,7 @@ const formatTime = (time) => {
 }
 
 const playMusic = () => {
-  // Inisialisasi audio context saat pertama kali musik dimainkan
   initSpectrum();
-  resizeCanvas();
 
   if (audioCtx && audioCtx.state === 'suspended') {
     audioCtx.resume();
@@ -120,7 +119,7 @@ const playMusic = () => {
     playBtn.classList.remove('pause');
     disk.classList.add('play');
   }).catch(err => {
-    console.log("Autoplay dicegah oleh browser:", err);
+    console.log("Autoplay dicegah browser:", err);
   });
 }
 
