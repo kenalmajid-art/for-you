@@ -1,4 +1,4 @@
-// ==================================================
+here// ==================================================
 // PENGATURAN TANGGAL
 // ==================================================
 
@@ -959,6 +959,10 @@ openMusicBtn.addEventListener(
     musicPage.classList.add(
         "active"
     );
+    
+    requestAnimationFrame(() => {
+      resizeCanvas();
+    });
 
 }
 
